@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Fun & Healthy Badminton</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #222;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 5px;
+      font-size: 32px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .quota-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .quota-card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .quota-card h3 {
+      margin-top: 0;
+      font-size: 16px;
+    }
+
+    .quota-card p {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .form-card,
+    .registrations-card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      margin-bottom: 25px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background: #111;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.85;
+    }
+
+    #message {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .registration-item {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 10px;
+    }
+
+    .registration-item h3 {
+      margin: 0 0 8px;
+    }
+
+    .registration-item p {
+      margin: 4px 0;
+    }
+
+    @media (max-width: 700px) {
+      .quota-container {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        margin: 20px auto;
+      }
+
+      h1 {
+        font-size: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>🏸 FUN & HEALTHY BADMINTON</h1>
+
+    <p class="subtitle">
+      Pendaftaran Peserta
+    </p>
+
+    <div class="quota-container">
+
+      <div class="quota-card">
+        <h3>Ganda Campuran</h3>
+        <p>
+          <span id="campuran-count">0</span> / 2 Tim
+        </p>
+      </div>
+
+      <div class="quota-card">
+        <h3>Ganda Putra</h3>
+        <p>
+          <span id="putra-count">0</span> / 3 Tim
+        </p>
+      </div>
+
+      <div class="quota-card">
+        <h3>Ganda Putri</h3>
+        <p>
+          <span id="putri-count">0</span> / 3 Tim
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="form-card">
+
+      <h2>Form Pendaftaran</h2>
+
+      <form id="registration-form">
+
+        <label>Nama Tim</label>
+
+        <input
+          type="text"
+          id="nama_tim"
+          placeholder="Masukkan nama tim"
+          required
+        >
+
+
+        <label>Nama Anggota 1</label>
+
+        <input
+          type="text"
+          id="anggota_1"
+          placeholder="Nama anggota pertama"
+          required
+        >
+
+
+        <label>Nama Anggota 2</label>
+
+        <input
+          type="text"
+          id="anggota_2"
+          placeholder="Nama anggota kedua"
+          required
+        >
+
+
+        <label>Nomor WhatsApp</label>
+
+        <input
+          type="tel"
+          id="whatsapp"
+          placeholder="08xxxxxxxxxx"
+          required
+        >
+
+
+        <label>Kategori</label>
+
+        <select id="kategori" required>
+
+          <option value="">
+            Pilih kategori
+          </option>
+
+          <option value="Ganda Campuran">
+            Ganda Campuran
+          </option>
+
+          <option value="Ganda Putra">
+            Ganda Putra
+          </option>
+
+          <option value="Ganda Putri">
+            Ganda Putri
+          </option>
+
+        </select>
+
+
+        <button type="submit" id="submit-btn">
+          DAFTAR SEKARANG
+        </button>
+
+        <p id="message"></p>
+
+      </form>
+
+    </div>
+
+
+    <div class="registrations-card">
+
+      <h2>Peserta Terdaftar</h2>
+
+      <div id="registration-list">
+        <p>Belum ada peserta.</p>
+      </div>
+
+    </div>
+
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./script.js"></script>
+</body>
+</html>
